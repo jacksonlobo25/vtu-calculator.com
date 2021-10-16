@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="basic.css">
+    <title>Second Semester</title>
+  </head>
+
+  <body style="background-color: black">
+    <div id="option">
+      <ul id="ul">
+        <li><a href="index.html">Home </a></li>
+        <li><a href="index.html">SGPA Calculator</a></li>
+        <li><a href="cgpa.html">CGPA Calculator</a></li>
+        <li><a href="#footer">About</a></li>
+      </ul>
+    </div>
+
+    <div id="all">
+      <h1 >Subjects</h1>
+    </div>
+
+    <div style="color: white;" id="form">
+      <label for="one">18MAT11/21 - </label>
+      <input type="number" id="one" name="one"/><br />
+      <br />
+      <label for="two">18CHE12/22 - </label>
+      <input type="number" id="two" name="two" /><br />
+      <br />
+      <label for="three">18CPS13/23 - </label>
+      <input type="number" id="three" name="three"/><br />
+      <br />
+      <label for="four">18ELN14/24 - </label>
+      <input type="number" id="four" name="four" /><br />
+      <br />
+      <label for="five">18ME15/25 - </label>
+      <input type="number" id="five" name="five" /><br />
+      <br />
+      <label for="six">18CHEL16/26 Lab - </label>
+      <input type="number" id="six" name="six" /><br />
+      <br />
+      <label for="seven">18CPL17/27 Lab - </label>
+      <input type="number" id="seven" name="seven" /><br />
+      <br />
+      <label for="eight">18EGH18/28(ENGLISH) - </label>
+      <input type="number" id="eight" name="eight" /><br />
+      <br />
+      <button id="cal" type="submit" onclick="calculate()">Calculate</button>
+    </div>
+
+    <div style="text-align: center;color: white;">
+      <h2>SGPA : <span id="s"></span></h2>
+      <h2>Percentage : <span id="p"></span></h2>
+    </div>
+    <br />
+    
+    <footer id="footer">
+      <h5 style="color: rgb(203, 248, 0)">Developed By : Jackson Lobo</h5>
+      <a href="https://www.instagram.com/jackson._.lobo/" target="blank" id="media" class="fa fa-instagram"></a>
+      <a href="https://www.linkedin.com/in/jacksonlobo/" target="blank" id="media" class="fa fa-linkedin"></a>
+    </footer>
+
+    <script>
+      function calculate(){
+        list = []
+        let a = parseFloat(document.getElementById("one").value);
+        list.push(a)
+        let b = parseFloat(document.getElementById("two").value);
+        list.push(b)
+        let c = parseFloat(document.getElementById("three").value);
+        list.push(c)
+        let d = parseFloat(document.getElementById("four").value);
+        list.push(d)
+        let e = parseFloat(document.getElementById("five").value);
+        list.push(e)
+        let f = parseFloat(document.getElementById("six").value);
+        list.push(f)
+        let g = parseFloat(document.getElementById("seven").value);
+        list.push(g)
+        let h = parseFloat(document.getElementById("eight").value);
+        list.push(h)
+        let i =0;
+        isTrue = true
+        for (i = 0; i< 8;i++){
+          if (list[i] < 0 || list[i] > 100 || isFloat(list[i])){
+            isTrue = false
+            break
+          }
+        }
+        if (isTrue){
+          let i = 0 
+          let sum = 0
+          for (i = 0; i < 8 ; i++){
+            if (list[i] >= 90 ){
+              sum += 10
+            }
+            else if (list[i] < 90 && list[i] >= 80){
+              sum += 9
+            }
+            else if (list[i] < 80 && list[i] >= 70){
+              sum += 8
+            }
+            else if (list[i] < 70 && list[i] >= 60){
+              sum += 7
+            }
+            else if (list[i] < 60 && list[i] >= 50){
+              sum += 6
+            }
+            else if (list[i] < 50 && list[i] >= 45){
+              sum += 5
+            }
+            else if (list[i] < 45 && list[i] >= 40){
+              sum += 4
+            }
+            else{
+              sum += 0
+            }
+          }
+          let sgpa = parseFloat(sum/8);
+          let percentage = parseFloat((sgpa* 10) - 7.5);
+          document.getElementById("s").innerText = sgpa.toFixed(2);
+          document.getElementById("p").innerText = percentage.toFixed(2) + "%";
+        }
+        else{
+          alert("Incorrect Value")
+        }
+      }
+      function isFloat(n){
+          return Number(n) === n && n % 1 !== 0;
+    }
+    </script>
+
+  </body>
+</html>
